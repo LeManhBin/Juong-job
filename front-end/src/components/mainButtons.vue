@@ -11,7 +11,7 @@
 
 <script setup>
     import { useSettingStore } from "../stores/settings"
-    import cvComponent from "../components/cvComponent.vue"
+    import cvComponent from "../components/CvComponent.vue"
     import { ref } from "vue";
     const store_setting = useSettingStore()
     const cv_languages= ["english", "uzbek", "russia"]
