@@ -216,8 +216,7 @@ export const useUserStore = defineStore("userStore", {
       try {
         this.isLoading = true;
         fetchGetRecommend(token).then((res) => {
-          console.log("get recommend", res.data[0]);
-          this.recommend = res.data[0];
+          this.recommend = res?.data[0];
           this.isLoading = false;
         });
       } catch (error) {

@@ -33,7 +33,7 @@
                         </div>
                         <button class="px-[15px] py-[10px] bg-green-500 text-white rounded-md font-semibold" @click="handleSearch">Tìm kiếm</button>
                     </div>
-                    <div v-if="jobCompany.length > 0" class="flex flex-col justify-between h-[85%]">
+                    <div v-if="jobCompany?.length > 0" class="flex flex-col justify-between h-[85%]">
                         <div class="flex flex-col gap-5 px-[20px]">
                             <JobCardCompany v-for="job in PostPagination" :key="job.id" :job="job"/>
                         </div>
@@ -129,8 +129,8 @@
     }
 
     const jobCompany = computed(() => {
-        return postStore.postCompany.filter((job) => {
-            return job?.position?.toLowerCase().includes(searchRef.value.toLowerCase());
+        return postStore.postCompany?.filter((job) => {
+            return job?.position?.toLowerCase()?.includes(searchRef.value?.toLowerCase());
         })
     })
 

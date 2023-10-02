@@ -69,12 +69,12 @@ import { useToast } from "vue-toastification";
         preview: null,
     })
     const profileRef = ref({
-        name: userStore.myUser.name,
-        phone: userStore.myUser.phone,
-        email: userStore.myUser.email,
-        avatar: userStore.myUser.avatar,
-        birthday: userStore.myUser.birthday,
-        address: userStore.myUser.address,
+        name: userStore.myUser?.name,
+        phone: userStore.myUser?.phone,
+        email: userStore.myUser?.email,
+        avatar: userStore.myUser?.avatar,
+        birthday: userStore.myUser?.birthday,
+        address: userStore.myUser?.address,
     }) 
 
     watchEffect(() => {
