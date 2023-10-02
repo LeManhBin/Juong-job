@@ -63,10 +63,9 @@ import { handleCheckLinkImage } from '../../constants/func';
     }  
 
     onMounted(() => {
-        handleGetDetailApply(route.params.id, businessStore.accessToken)
+        handleGetDetailApply(route.params.id, businessStore?.accessToken)
     })
 
-    console.log("======",businessStore.apply);
     
 </script>
 <style lang="">
