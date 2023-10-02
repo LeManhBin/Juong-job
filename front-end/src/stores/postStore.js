@@ -36,7 +36,7 @@ export const usePostStore = defineStore("postStore", {
         fetchGetAllPost().then((res) => {
           this.isLoading = false;
           this.posts = res?.data;
-          this.totalPages = Math.ceil(res.data.length / this.itemsPerPage);
+          this.totalPages = Math.ceil(res?.data?.length / this.itemsPerPage);
         });
       } catch (error) {
         this.isLoading = false;
@@ -48,7 +48,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchGetTopPost().then((res) => {
           this.isLoading = false;
-          this.topPosts = res?.data.jobs;
+          this.topPosts = res?.data?.jobs;
         });
       } catch (error) {
         this.isLoading = false;
@@ -60,7 +60,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchPostById(id).then((res) => {
           this.isLoading = false;
-          this.post = res.data;
+          this.post = res?.data;
         });
       } catch (error) {
         this.isLoading = false;
@@ -72,7 +72,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchGetPostByIdBusiness(id).then((res) => {
           this.isLoading = false;
-          this.posts = res.data;
+          this.posts = res?.data;
         });
       } catch (error) {
         this.isLoading = false;
@@ -84,7 +84,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchPostByTokenBusiness(token).then((res) => {
           this.isLoading = false;
-          this.posts = res.data.jobs;
+          this.posts = res?.data?.jobs;
         });
       } catch (error) {
         this.isLoading = false;
@@ -96,7 +96,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchPostByIdBusiness(id).then((res) => {
           this.isLoading = false;
-          this.postCompany = res.data;
+          this.postCompany = res?.data;
         });
       } catch (error) {
         this.isLoading = false;
@@ -146,7 +146,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchSearch(position, level, location).then((res) => {
           this.isLoading = false;
-          this.posts = res.data.data;
+          this.posts = res?.data?.data;
         });
       } catch (error) {
         this.isLoading = false;
@@ -170,7 +170,7 @@ export const usePostStore = defineStore("postStore", {
         this.isLoading = true;
         fetchFavoritePost(token).then((res) => {
           this.isLoading = false;
-          this.favorites = res.data.favorite_jobs;
+          this.favorites = res?.data?.favorite_jobs;
         });
       } catch (error) {
         this.isLoading = false;

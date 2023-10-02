@@ -43,10 +43,10 @@ export const useBusinessStore = defineStore("businessStore", {
         const data = await fetchLoginBusiness(business);
         if (data) {
           this.isLoading = false;
-          this.accessToken = data?.data.token;
-          localStorage.setItem("tokenBusiness", data?.data.token);
+          this.accessToken = data?.data?.token;
+          localStorage.setItem("tokenBusiness", data?.data?.token);
           localStorage.setItem("isLoggedBusiness", JSON.stringify(true));
-          this.myBusiness = data.data.seeker;
+          this.myBusiness = data?.data?.seeker;
           this.isLoggedBusiness = true;
         }
       } catch (error) {
@@ -62,7 +62,7 @@ export const useBusinessStore = defineStore("businessStore", {
         if (accessToken) {
           getInforBusiness(accessToken).then((res) => {
             this.isLoading = false;
-            this.myBusiness = res.data.business;
+            this.myBusiness = res?.data?.business;
             localStorage.setItem("isLoggedBusiness", JSON.stringify(true));
             this.isLoggedBusiness = true;
           });
@@ -113,7 +113,6 @@ export const useBusinessStore = defineStore("businessStore", {
         fetchGetAllBusiness().then((res) => {
           this.isLoading = false;
           this.businesses = res?.data;
-          console.log("====", res.data);
         });
       } catch (error) {
         this.isLoading = false;
@@ -125,8 +124,7 @@ export const useBusinessStore = defineStore("businessStore", {
         this.isLoading = true;
         fetchGetBusinessById(id).then((res) => {
           this.isLoading = false;
-          console.log("====", res.data);
-          this.business = res.data;
+          this.business = res?.data;
         });
       } catch (error) {
         this.isLoading = false;
@@ -140,7 +138,7 @@ export const useBusinessStore = defineStore("businessStore", {
         this.isLoading = true;
         fetchGetApplyByBusiness(token).then((res) => {
           this.isLoading = false;
-          this.applyList = res.data?.applications;
+          this.applyList = res?.data?.applications;
         });
       } catch (error) {
         this.isLoading = false;
@@ -152,7 +150,7 @@ export const useBusinessStore = defineStore("businessStore", {
         this.isLoading = true;
         fetchGetApplyById(applyId, token).then((res) => {
           this.isLoading = false;
-          this.apply = res.data.application[0];
+          this.apply = res?.data?.application[0];
         });
       } catch (error) {
         this.isLoading = false;

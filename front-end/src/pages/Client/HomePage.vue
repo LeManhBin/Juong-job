@@ -31,7 +31,7 @@
         <div class="max-w-[1300px] mx-auto mt-[50px] max-xl:px-[50px]">
             <h2 class="font-semibold text-[23px] mb-[20px] max-sm:text-center">Công việc nổi bật</h2>
             <div class="grid grid-cols-3 gap-5 max-sm:grid-cols-1 max-xl:grid-cols-2">
-                <PostVue v-for="post in TopPostPagination" :key="post.id" :post="post"/>
+                <PostVue v-for="post in TopPostPagination" :key="post?.id" :post="post"/>
             </div>
             <div class="flex justify-center mt-5">
                 <PaginationVue :pageArray="topPageArray" :currentPage="topCurrentPage" :goToPage="topGoToPage"/>
@@ -53,7 +53,7 @@
                 :loop="true"
                 :autoplay="{delay: 2000}"
             >
-                <swiper-slide v-for="post in userStore?.recommend" :key="post.id">
+                <swiper-slide v-for="post in userStore?.recommend" :key="post?.id">
                     <PostVue  :post="post"/>
                 </swiper-slide>
             </swiper>
@@ -62,7 +62,7 @@
         <div class="max-w-[1300px] mx-auto mt-[50px] max-xl:px-[50px]">
             <h2 class="font-semibold text-[23px] mb-[20px] max-sm:text-center">Công việc mới nhất</h2>
             <div class="grid grid-cols-3 gap-5 max-sm:grid-cols-1 max-xl:grid-cols-2">
-                <PostVue v-for="post in PostPagination" :key="post.id" :post="post"/>
+                <PostVue v-for="post in PostPagination" :key="post?.id" :post="post"/>
             </div>
             <div class="flex justify-center mt-5">
                 <PaginationVue :pageArray="pageArray" :currentPage="currentPage" :goToPage="goToPage"/>
@@ -160,24 +160,24 @@ import { useUserStore } from "../../stores/userStore";
         await businessStore.actGetAllBusiness()
     }
     const handleGetRecommendPost = async() => {
-        await userStore.actGetPostRecommend(userStore.accessToken)
+        await userStore.actGetPostRecommend(userStore?.accessToken)
     }
     onMounted(() => {
         handleGetAllData()
         handleGetAllBusiness()
         handleGetTopData()
-        if(userStore.accessToken) {
+        if(userStore?.accessToken) {
             handleGetRecommendPost()
         }
     })
    
 
     const postsData = computed(() => {
-        return postStore.posts
+        return postStore?.posts
     })
 
     const businessData = computed(() => {
-        return businessStore.businesses
+        return businessStore?.businesses
     })
 
     const handleGoDetailBusiness = (id) => {
@@ -185,16 +185,16 @@ import { useUserStore } from "../../stores/userStore";
     }
 // Pagination top post
     const TopPostPagination = computed(() => {
-        totalPages.value = Math.ceil(postStore?.topPosts.length / itemsPerPage.value)
-        const startIndex = (currentPageInit.value - 1) * itemsPerPage.value;
-        totalPages.value = Math.ceil(postStore.topPosts.length / itemsPerPage.value)
-        const endIndex = startIndex + itemsPerPage.value;
+        totalPages.value = Math.ceil(postStore?.topPosts?.length / itemsPerPage?.value)
+        const startIndex = (currentPageInit?.value - 1) * itemsPerPage?.value;
+        totalPages.value = Math.ceil(postStore?.topPosts?.length / itemsPerPage?.value)
+        const endIndex = startIndex + itemsPerPage?.value;
         return postStore?.topPosts?.slice(startIndex, endIndex);
     });
 
     const topPageArray = computed(() => {
         const arr = [];
-        for (let i = 1; i <= totalPages.value; i++) {
+        for (let i = 1; i <= totalPages?.value; i++) {
             arr.push(i);
         }
         return arr;
@@ -210,14 +210,14 @@ import { useUserStore } from "../../stores/userStore";
     })
     // Pagination post
     const PostPagination = computed(() => {
-        const startIndex = (postStore.currentPage - 1) * postStore.itemsPerPage;
-        const endIndex = startIndex + postStore.itemsPerPage;
-        return postStore.posts.slice(startIndex, endIndex);
+        const startIndex = (postStore?.currentPage - 1) * postStore?.itemsPerPage;
+        const endIndex = startIndex + postStore?.itemsPerPage;
+        return postStore?.posts?.slice(startIndex, endIndex);
     });
 
     const pageArray = computed(() => {
         const arr = [];
-        for (let i = 1; i <= postStore.totalPages; i++) {
+        for (let i = 1; i <= postStore?.totalPages; i++) {
             arr.push(i);
         }
         return arr;
